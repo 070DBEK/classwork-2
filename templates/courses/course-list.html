@@ -23,7 +23,7 @@
                 <span style="color: var(--primary); font-weight: 600;">${{ course.price }}</span>
             </div>
             <div style="display: flex; gap: 1rem;">
-                <a href="{{ get_detail_url }}" class="btn btn-primary">View Details</a>
+                <a href="{% url 'courses:course_detail' year=course.created_at.year month=course.created_at.month day=course.created_at.day slug=course.slug %}">View Details</a>
                 <a href="{% url 'courses:delete' course.id %}" class="btn btn-danger">Delete</a>
             </div>
         </div>

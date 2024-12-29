@@ -40,12 +40,14 @@
             <div class="card">
                 <h3 style="color: var(--text-light); margin-bottom: 1rem;">Group Enrollment</h3>
                 <div class="form-group">
-                    <label for="groups">Select Groups</label>
-                    <select multiple id="groups" name="groups" class="form-control" size="8">
-                        {% for group in groups %}
-                            <option value="{{ group.id }}">{{ group.name }}</option>
+                    <label for="courses">Select Groups</label>
+                    <select name="courses" id="courses" class="form-control" multiple>
+                        {% for course in courses %}
+                            <option value="{{ course.id }}">{{ course.name }}</option>
+                        {% empty %}
+                         No courses
                         {% endfor %}
-                    </select>
+                        </select>
                     <p style="color: var(--text-light); font-size: 0.875rem; margin-top: 0.5rem;">
                         Hold Ctrl/Cmd to select multiple groups
                     </p>

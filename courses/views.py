@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Course
+import time
+from django.utils.text import slugify
 
 
 def home(request):
@@ -23,8 +25,10 @@ def add_course(request):
         end = request.POST.get('end')
 
         if name and description and duration and price and number and start and end:
+            slug = slugify(name) + '-' + str(int(time.time()))  # Unikal slug
             Course.objects.create(
                 name=name,
+                slug=slug,  # Qo'shildi
                 description=description,
                 duration=int(duration),
                 price=float(price),
@@ -44,9 +48,7 @@ def course_detail(request, year, month, day, slug):
         created_at__month=month,
         created_at__day=day
     )
-    ctx = {'course': course}
-    return render(request, 'courses/course-detail.html', ctx)
-
+    return render(request, 'courses/course-detail.html', {'course': course})
 
 def course_delete(request, pk):
     course = get_object_or_404(Course, pk=pk)

@@ -3,35 +3,14 @@
 
 {% block title %} Course Delete{% endblock %}
 
-{% block content %
+{% block content %}
 
-        <div class="card" style="max-width: 500px; margin: 4rem auto; text-align: center;">
-            <div style="width: 64px; height: 64px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
-                <span style="font-size: 2rem;">⚠️</span>
-            </div>
-            
-            <h2 style="color: var(--danger); margin-bottom: 1rem;">Delete Course</h2>
-            <p style="color: var(--text-light); margin-bottom: 2rem;">
-                Are you sure you want to delete "Web Development" course? This action cannot be undone.
-            </p>
-
-            <div class="card" style="background: #fee2e2; border: 1px solid #fecaca; margin-bottom: 2rem;">
-                <h4 style="color: var(--danger); margin-bottom: 0.5rem;">Warning</h4>
-                <p style="color: #ef4444; font-size: 0.875rem;">
-                    Deleting this course will remove all associated data, including:
-                </p>
-                <ul style="color: #ef4444; font-size: 0.875rem; list-style: none; margin-top: 0.5rem;">
-                    <li>• Student enrollments</li>
-                    <li>• Course materials</li>
-                    <li>• Progress tracking</li>
-                    <li>• Assessment records</li>
-                </ul>
-            </div>
-
-            <div style="display: flex; gap: 1rem; justify-content: center;">
-                <a href="{% url 'courses:list' %}" class="btn btn-danger">Yes, Delete Course</a>
-                <a href="{% url 'courses:list' %}" class="btn btn-primary">Cancel</a>
-            </div>
-        </div>
+<form method="POST">
+    {% csrf_token %}
+    <p>Are you sure you want to delete "{{ course.name }}"?</p>
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a href="{% url 'courses:list' %}" class="btn btn-secondary">Cancel</a>
+</form>
 
 {% endblock %}
+
