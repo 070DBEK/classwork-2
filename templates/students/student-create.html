@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block title %}Create New Student{% endblock %}
+
+{% block content %}
+
+<div class="card" style="max-width: 800px; margin: 0 auto;">
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">Create New Student</h1>
+        <p style="color: var(--text-light);">Add a new student to the system</p>
+    </div>
+
+    <form action="{% url 'students:list' %}" method="POST">
+        {% csrf_token %}
+        <div class="card-grid">
+            <div class="card">
+                <h3 style="color: var(--text-light); margin-bottom: 1rem;">Personal Information</h3>
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input type="text" id="first_name" name="first_name" class="form-control" required
+                           placeholder="Enter first name">
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input type="text" id="last_name" name="last_name" class="form-control" required
+                           placeholder="Enter last name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required
+                           placeholder="Enter email address">
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" class="form-control"
+                           placeholder="Enter phone number">
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="color: var(--text-light); margin-bottom: 1rem;">Group Enrollment</h3>
+                <div class="form-group">
+                    <label for="groups">Select Groups</label>
+                    <select multiple id="groups" name="groups" class="form-control" size="8">
+                        {% for group in groups %}
+                            <option value="{{ group.id }}">{{ group.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <p style="color: var(--text-light); font-size: 0.875rem; margin-top: 0.5rem;">
+                        Hold Ctrl/Cmd to select multiple groups
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <h3 style="color: var(--text-light); margin-bottom: 1rem;">Additional Information</h3>
+            <div class="form-group">
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" class="form-control" rows="4"
+                        placeholder="Add any additional notes about the student"></textarea>
+            </div>
+        </div>
+
+        <div class="mt-2" style="display: flex; gap: 1rem;">
+            <button type="submit" class="btn btn-primary">Create Student</button>
+            <a href="{% url 'students:list' %}" class="btn btn-danger">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

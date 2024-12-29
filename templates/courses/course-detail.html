@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Delete Course{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">Delete Course</h1>
+        <p style="color: var(--text-light);">
+            Are you sure you want to delete the course "{{ course.name }}"?
+        </p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <p style="color: var(--text);">
+            This action cannot be undone. If you proceed, the course will be permanently removed.
+        </p>
+        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <a href="{% url 'courses:list' %}" class="btn btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

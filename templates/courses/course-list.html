@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Course List{% endblock %}
+
+{% block content %}
+
+<div class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <div>
+            <h1 style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">Courses</h1>
+            <p style="color: var(--text-light);">Manage and monitor your courses</p>
+        </div>
+        <a href="{% url 'courses:add' %}" class="btn btn-primary">+ Add New Course</a>
+    </div>
+
+    <div class="card-grid">
+        {% for course in courses %}
+        <div class="card">
+            <h3 style="color: var(--text); margin: 1rem 0;">{{ course.name }}</h3>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">{{ course.description }}</p>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;">
+                <span style="color: var(--text-light);">Duration: {{ course.duration }} months</span>
+                <span style="color: var(--primary); font-weight: 600;">${{ course.price }}</span>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <a href="{{ get_detail_url }}" class="btn btn-primary">View Details</a>
+                <a href="{% url 'courses:delete' course.id %}" class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+        {% empty %}
+        <p>No courses available</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

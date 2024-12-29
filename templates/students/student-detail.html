@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduLMS - Student Detail</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="logo">📚 EduLMS</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="course-list.html">Courses</a>
+                <a href="student-list.html">Students</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container">
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 2rem;">
+                <div style="display: flex; gap: 1.5rem; align-items: center;">
+                    <div style="width: 80px; height: 80px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 600;">
+                        JD
+                    </div>
+                    <div>
+                        <h1 style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">John Doe</h1>
+                        <p style="color: var(--text-light);">Student ID: STU001</p>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn btn-primary">Edit Profile</button>
+                    <a href="student-delete-confirm.html" class="btn btn-danger">Delete Student</a>
+                </div>
+            </div>
+
+            <div class="card-grid">
+                <!-- Personal Information Card -->
+                <div class="card">
+                    <h3 style="color: var(--text-light); margin-bottom: 1rem;">Personal Information</h3>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <p style="color: var(--text);">john@example.com</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <p style="color: var(--text);">+1 234 567 8900</p>
+                    </div>
+                    <div class="form-group">
+                        <label>Joined Date</label>
+                        <p style="color: var(--text);">January 15, 2024</p>
+                    </div>
+                </div>
+
+                <!-- Overall Progress Card -->
+                <div class="card">
+                    <h3 style="color: var(--text-light); margin-bottom: 1rem;">Overall Progress</h3>
+                    <div style="text-align: center;">
+                        <div style="font-size: 3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">
+                            75%
+                        </div>
+                        <div class="progress-bar" style="margin-bottom: 1rem;">
+                            <div class="progress-bar-fill" style="width: 75%"></div>
+                        </div>
+                        <p style="color: var(--text-light);">Average completion across all courses</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enrolled Courses Section -->
+            <div class="card mt-2">
+                <h3 style="color: var(--text-light); margin-bottom: 1rem;">Enrolled Courses</h3>
+                <div class="card-grid">
+                    <!-- Course 1 -->
+                    <div class="card">
+                        <div class="badge badge-success">Active</div>
+                        <h4 style="color: var(--text); margin: 1rem 0;">Web Development</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-light);">Progress</span>
+                                <span style="color: var(--primary); font-weight: 600;">75%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; color: var(--text-light); font-size: 0.875rem;">
+                            <span>Start: Jan 15, 2024</span>
+                            <span>End: Apr 15, 2024</span>
+                        </div>
+                    </div>
+
+                    <!-- Course 2 -->
+                    <div class="card">
+                        <div class="badge badge-success">Active</div>
+                        <h4 style="color: var(--text); margin: 1rem 0;">UI/UX Design</h4>
+                        <div style="margin-bottom: 1rem;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span style="color: var(--text-light);">Progress</span>
+                                <span style="color: var(--primary); font-weight: 600;">45%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-bar-fill" style="width: 45%"></div>
+                            </div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; color: var(--text-light); font-size: 0.875rem;">
+                            <span>Start: Feb 1, 2024</span>
+                            <span>End: Apr 1, 2024</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Performance Analytics -->
+            <div class="card mt-2">
+                <h3 style="color: var(--text-light); margin-bottom: 1rem;">Performance Analytics</h3>
+                <div class="card-grid">
+                    <div class="card" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem;">
+                            85%
+                        </div>
+                        <p style="color: var(--text-light);">Average Assessment Score</p>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--secondary); margin-bottom: 0.5rem;">
+                            95%
+                        </div>
+                        <p style="color: var(--text-light);">Attendance Rate</p>
+                    </div>
+                    <div class="card" style="text-align: center;">
+                        <div style="font-size: 2rem; font-weight: 700; color: var(--accent); margin-bottom: 0.5rem;">
+                            12
+                        </div>
+                        <p style="color: var(--text-light);">Completed Assignments</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Activity -->
+            <div class="card mt-2">
+                <h3 style="color: var(--text-light); margin-bottom: 1rem;">Recent Activity</h3>
+                <div class="card">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Activity</th>
+                                <th>Course</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Submitted Assignment #5</td>
+                                <td>Web Development</td>
+                                <td>Feb 20, 2024</td>
+                                <td><div class="badge badge-success">Completed</div></td>
+                            </tr>
+                            <tr>
+                                <td>Completed Quiz #3</td>
+                                <td>UI/UX Design</td>
+                                <td>Feb 18, 2024</td>
+                                <td><div class="badge badge-success">Passed</div></td>
+                            </tr>
+                            <tr>
+                                <td>Started Module 4</td>
+                                <td>Web Development</td>
+                                <td>Feb 15, 2024</td>
+                                <td><div class="badge badge-warning">In Progress</div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <a href="student-list.html" class="btn btn-primary">Back to Student List</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 EduLMS. All rights reserved.</p>
+    </footer>
+</body>
+</html>

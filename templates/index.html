@@ -1,0 +1,48 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Home page{% endblock %}
+
+{% block content %}
+
+        <div class="card text-center" style="max-width: 800px; margin: 4rem auto;">
+            <h1 style="font-size: 3rem; background: linear-gradient(135deg, var(--primary), var(--secondary)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;">
+                Welcome to EduLMS
+            </h1>
+            <p style="color: var(--text-light); font-size: 1.25rem; margin-bottom: 2rem;">
+                Manage your courses and students efficiently with our modern Learning Management System
+            </p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3 style="color: var(--primary); margin-bottom: 1rem;">Course Management</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                        Create and manage courses, track student progress, and organize your educational content effectively.
+                    </p>
+                    <a href="{% url 'courses:list' %}" class="btn btn-primary">View Courses</a>
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: var(--secondary); margin-bottom: 1rem;">Student Management</h3>
+                    <p style="color: var(--text-light); margin-bottom: 1.5rem;">
+                        Manage student enrollments, monitor progress, and maintain student records seamlessly.
+                    </p>
+                    <a href="{% url 'students:list' %}" class="btn btn-primary">View Students</a>
+                </div>
+            </div>
+
+            <div class="card mt-2" style="background: linear-gradient(135deg, rgba(79, 70, 229, 0.1), rgba(6, 182, 212, 0.1));">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 2rem;">
+                    <div>
+                        <h3 style="color: var(--primary); margin-bottom: 0.5rem;">Ready to get started?</h3>
+                        <p style="color: var(--text-light);">Create your first course or add new students to begin.</p>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <a href="{% url 'courses:add' %}" class="btn btn-primary">Create Course</a>
+                        <a href="{% url 'students:add' %}" class="btn btn-primary">Add Student</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

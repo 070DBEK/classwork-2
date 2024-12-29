@@ -1,0 +1,67 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Create New Course{% endblock %}
+
+{% block content %}
+
+<div class="card" style="max-width: 800px; margin: 0 auto;">
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">Create New Course</h1>
+        <p style="color: var(--text-light);">Fill in the details to create a new course</p>
+    </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="card-grid">
+            <div class="card">
+                <h3 style="color: var(--text-light); margin-bottom: 1rem;">Basic Information</h3>
+                <div class="form-group">
+                    <label for="courseName">Course Name</label>
+                    <input type="text" id="courseName" name="name" class="form-control" required placeholder="Enter course name">
+                </div>
+                <div class="form-group">
+                    <label for="courseDescription">Description</label>
+                    <textarea id="courseDescription" name="description" class="form-control" rows="4" placeholder="Enter course description"></textarea>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 style="color: var(--text-light); margin-bottom: 1rem;">Course Details</h3>
+                <div class="form-group">
+                    <label for="duration">Duration (months)</label>
+                    <input type="number" id="duration" name="duration" class="form-control" required placeholder="e.g., 3 months">
+                </div>
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" step="0.01" id="price" name="price" class="form-control" required placeholder="Enter price in USD">
+                </div>
+                <div class="form-group">
+                    <label for="maxStudents">Maximum Students</label>
+                    <input type="number" id="maxStudents" name="number" class="form-control" placeholder="Enter maximum number of students">
+                </div>
+            </div>
+        </div>
+
+        <div class="card mt-2">
+            <h3 style="color: var(--text-light); margin-bottom: 1rem;">Schedule</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div class="form-group">
+                    <label for="startDate">Start Date</label>
+                    <input type="date" id="startDate" name="start" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label for="endDate">End Date</label>
+                    <input type="date" id="endDate" name="end" class="form-control" required>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-2" style="display: flex; gap: 1rem;">
+            <button type="submit" class="btn btn-primary">Create Course</button>
+            <a href="{% url 'courses:list' %}" class="btn btn-danger">Cancel</a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
