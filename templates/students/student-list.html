@@ -61,7 +61,7 @@
                         </td>
                         <td>
                             <div style="display: flex; gap: 0.5rem;">
-                                <a href="{% url 'students:detail' student.id %}" class="btn btn-primary">View</a>
+                                <a href="{% url 'students:detail' student.year student.month student.day student.slug %}" class="btn btn-primary">View</a>
                                 <a href="{% url 'students:delete' student.id %}" class="btn btn-danger">Delete</a>
                             </div>
                         </td>

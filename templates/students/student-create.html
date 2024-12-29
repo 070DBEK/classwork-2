@@ -10,7 +10,7 @@
         <p style="color: var(--text-light);">Add a new student to the system</p>
     </div>
 
-    <form action="{% url 'students:list' %}" method="POST">
+    <form action="{% url 'students:add' %}" method="POST">
         {% csrf_token %}
         <div class="card-grid">
             <div class="card">

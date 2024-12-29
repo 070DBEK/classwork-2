@@ -10,27 +10,29 @@ def student_list(request):
 
 
 def add_student(request):
-    if request.method == "POST":
+    if request.method == 'POST':
         first_name = request.POST.get('first_name')
         last_name = request.POST.get('last_name')
         email = request.POST.get('email')
         phone = request.POST.get('phone')
-        courses = request.POST.getlist('courses')
-        notes = request.POST.get('notes')
-        if first_name and last_name and email and phone and courses and notes:
-            Student.objects.create(
-                first_name=first_name,
-                last_name=last_name,
-                email=email,
-                phone=phone,
-                courses=courses,
-                notes=notes,
-            )
-            # student.courses.set(courses)
-            return redirect('students:list')
-    courses = Course.objects.all()
-    return render(request, 'students/student-create.html', {'courses': courses})
+        courses = request.POST.getlist('courses')  # Bir nechta kurs IDlarini oladi
 
+        # Talabani yaratish
+        student = Student.objects.create(
+            first_name=first_name,
+            last_name=last_name,
+            email=email,
+            phone=phone
+        )
+
+        # Kurslarni bog‘lash
+        course_objects = Course.objects.filter(id__in=courses)  # Tanlangan kurslarni oladi
+        student.courses.set(course_objects)  # .set() ishlatiladi
+
+        return redirect('students:list')  # Ro'yxatga qaytish
+
+    courses = Course.objects.all()  # Formada ko‘rsatish uchun barcha kurslar
+    return render(request, 'students/student-create.html', {'courses': courses})
 
 
 def student_detail(request, year, month, day, slug):
