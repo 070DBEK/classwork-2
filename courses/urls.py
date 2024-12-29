@@ -11,8 +11,7 @@ urlpatterns = [
     path(
         'course/<int:year>/<int:month>/<int:day>/<slug:slug>/',
         views.course_detail,
-        name='course_detail'
+        name='detail'
     ),
     path('delete/<int:pk>/', views.course_delete, name='delete'),
-    path('course/delete/<int:pk>/', views.course_delete, name='course_delete')
 ]

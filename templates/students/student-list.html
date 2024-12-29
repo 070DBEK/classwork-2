@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}Student list{% endblock %}
+{% block title %}Student List{% endblock %}
 
 {% block content %}
 
@@ -25,41 +25,55 @@
                 </tr>
             </thead>
             <tbody>
-                {% for student in students %}
-                <tr>
-                    <td>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 500;">
-                                {{ student.initials }}
+                {% if students %}
+                    {% for student in students %}
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 500;">
+                                    {{ student.first_name|slice:":1" }}{{ student.last_name|slice:":1" }}
+                                </div>
+                                <div>
+                                    <div style="font-weight: 500;">{{ student.first_name }} {{ student.last_name }}</div>
+                                    <div style="font-size: 0.875rem; color: var(--text-light);">ID: {{ student.id }}</div>
+                                </div>
                             </div>
-                            <div>
-                                <div style="font-weight: 500;">{{ student.name }}</div>
-                                <div style="font-size: 0.875rem; color: var(--text-light);">ID: {{ student.id }}</div>
+                        </td>
+                        <td>{{ student.email }}</td>
+                        <td>
+                            {% for course in student.courses.all %}
+                            <div class="badge badge-success">{{ course.name }}</div>
+                            {% empty %}
+                            <span class="badge badge-secondary">No courses</span>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                {% if student.progress %}
+                                    {{ student.notes }}%
+                                    <div class="progress-bar" style="flex: 1;">
+                                        <div class="progress-bar-fill" style="width: {{ student.notes }}%;"></div>
+                                    </div>
+                                {% else %}
+                                    <span style="color: var(--text-light);">No progress data</span>
+                                {% endif %}
                             </div>
-                        </div>
-                    </td>
-                    <td>{{ student.email }}</td>
-                    <td>
-                        {% for course in student.courses %}
-                        <div class="badge badge-success">{{ course }}</div>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        <div style="display: flex; align-items: center; gap: 0.5rem;">
-                            {{ student.progress }}%
-                            <div class="progress-bar" style="flex: 1;">
-                                <div class="progress-bar-fill" style="width: {{ student.progress }}%"></div>
+                        </td>
+                        <td>
+                            <div style="display: flex; gap: 0.5rem;">
+                                <a href="{% url 'students:detail' student.id %}" class="btn btn-primary">View</a>
+                                <a href="{% url 'students:delete' student.id %}" class="btn btn-danger">Delete</a>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <div style="display: flex; gap: 0.5rem;">
-                            <a href="{% url 'student_detail' student.id %}" class="btn btn-primary">View</a>
-                            <a href="{% url 'student_delete_confirm' student.id %}" class="btn btn-danger">Delete</a>
-                        </div>
-                    </td>
-                </tr>
-                {% endfor %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: var(--text-light);">
+                            No students found.
+                        </td>
+                    </tr>
+                {% endif %}
             </tbody>
         </table>
     </div>

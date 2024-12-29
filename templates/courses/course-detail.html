@@ -17,7 +17,7 @@
             This action cannot be undone. If you proceed, the course will be permanently removed.
         </p>
         <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-            <button type="submit" class="btn btn-danger">Confirm Delete</button>
+            <button type="submit" class="btn btn-danger"><a href="{% url 'courses:delete' course.id %}" >Confirm Delete</a></button>
             <a href="{% url 'courses:list' %}" class="btn btn-secondary">Cancel</a>
         </div>
     </form>

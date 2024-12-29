@@ -6,11 +6,8 @@ from courses.models import Course
 def student_list(request):
     students = Student.objects.all()
     ctx = {'students': students}
-    return render(request, 'students/student-list.html', ctx)\
+    return render(request, 'students/student-list.html', ctx)
 
-
-from django.shortcuts import render, redirect
-from .models import Student, Course
 
 def add_student(request):
     if request.method == "POST":
@@ -19,20 +16,21 @@ def add_student(request):
         email = request.POST.get('email')
         phone = request.POST.get('phone')
         courses = request.POST.getlist('courses')
-
-        # Student yaratish va kurslarni bog'lash
-        if first_name and last_name and email and phone and courses:
-            student = Student.objects.create(
+        notes = request.POST.get('notes')
+        if first_name and last_name and email and phone and courses and notes:
+            Student.objects.create(
                 first_name=first_name,
                 last_name=last_name,
                 email=email,
-                phone=phone
+                phone=phone,
+                courses=courses,
+                notes=notes,
             )
-            student.courses.set(courses)  # ManyToManyField orqali bog'lash
+            # student.courses.set(courses)
             return redirect('students:list')
-    # GET so'rovda barcha kurslarni yuborish
     courses = Course.objects.all()
-    return render(request, 'students/student_create.html', {'courses': courses})
+    return render(request, 'students/student-create.html', {'courses': courses})
+
 
 
 def student_detail(request, year, month, day, slug):
@@ -43,12 +41,12 @@ def student_detail(request, year, month, day, slug):
         created_at__month=month,
         created_at__day=day
     )
-    return render(request, 'students/student_detail.html', {'student': student})
+    return render(request, 'students/student-detail.html', {'student': student})
 
 
 def delete_student(request, pk):
     student = get_object_or_404(Student, pk=pk)
     if request.method == "POST":
         student.delete()
-        return redirect('students:student_list')
-    return render(request, 'students/student_delete_confirm.html', {'student': student})
+        return redirect('students:list')
+    return render(request, 'students/student-delete-confirm.html', {'student': student})

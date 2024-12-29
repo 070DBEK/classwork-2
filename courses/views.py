@@ -25,10 +25,10 @@ def add_course(request):
         end = request.POST.get('end')
 
         if name and description and duration and price and number and start and end:
-            slug = slugify(name) + '-' + str(int(time.time()))  # Unikal slug
+            slug = slugify(name) + '-' + str(int(time.time()))
             Course.objects.create(
                 name=name,
-                slug=slug,  # Qo'shildi
+                slug=slug,
                 description=description,
                 duration=int(duration),
                 price=float(price),

@@ -8,7 +8,7 @@
             <div style="width: 64px; height: 64px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
                 <span style="font-size: 2rem;">⚠️</span>
             </div>
-            
+
             <h2 style="color: var(--danger); margin-bottom: 1rem;">Delete Course</h2>
             <p style="color: var(--text-light); margin-bottom: 2rem;">
                 Are you sure you want to delete the course "{{ course.name }}"? This action cannot be undone.
@@ -32,7 +32,7 @@
                     {% csrf_token %}
                     <button type="submit" class="btn btn-danger" style="flex: 1;" href="{% url 'courses:list' %}">Yes, Delete Course</button>
                 </form>
-                <a href="{% url 'courses:list' %}" class="btn btn-primary">Cancel</a>
+                <a href="{% url 'students:list' %}" class="btn btn-primary">Cancel</a>
             </div>
         </div>
 

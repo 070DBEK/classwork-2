@@ -6,12 +6,12 @@ from students.base_model import BaseModel
 
 
 class Student(BaseModel):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=25)
-    courses = models.ForeignKey(Course, related_name='students', on_delete=models.CASCADE)
-    notes = models.TextField()
+    phone = models.CharField(max_length=15, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    courses = models.ManyToManyField(Course, related_name="students")
 
 
     def __str__(self):
