@@ -25,7 +25,7 @@ class Student(BaseModel):
 
 
     def get_detail_url(self):
-        return reverse('students:student_detail', args=[
+        return reverse('students:detail', args=[
             self.created_at.year,
             self.created_at.month,
             self.created_at.day,

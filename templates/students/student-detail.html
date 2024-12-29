@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div style="display: flex; gap: 1rem;">
-                <a href="{% url 'students:edit' student.id %}" class="btn btn-primary">Edit Profile</a>
+                <a href="#" class="btn btn-primary">Edit Profile</a>
                 <a href="{% url 'students:delete' student.id %}" class="btn btn-danger">Delete Student</a>
             </div>
         </div>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label>Joined Date</label>
-                    <p style="color: var(--text);">{{ student.joined_date|date:"F j, Y" }}</p>
+                    <p style="color: var(--text);">{{ student.created_at|date:"F j, Y" }}</p>
                 </div>
             </div>
 
