@@ -1,39 +1,37 @@
 {% extends 'base.html' %}
 
-{% block title %}Delete Course{% endblock %}
+{% block title %}Delete Student {% endblock %}
 
 {% block content %}
-
-        <div class="card" style="max-width: 500px; margin: 4rem auto; text-align: center;">
-            <div style="width: 64px; height: 64px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
-                <span style="font-size: 2rem;">⚠️</span>
-            </div>
-
-            <h2 style="color: var(--danger); margin-bottom: 1rem;">Delete Course</h2>
-            <p style="color: var(--text-light); margin-bottom: 2rem;">
-                Are you sure you want to delete the course "{{ course.name }}"? This action cannot be undone.
-            </p>
-
-            <div class="card" style="background: #fee2e2; border: 1px solid #fecaca; margin-bottom: 2rem;">
-                <h4 style="color: var(--danger); margin-bottom: 0.5rem;">Warning</h4>
-                <p style="color: #ef4444; font-size: 0.875rem;">
-                    Deleting this course will remove all associated data, including:
-                </p>
-                <ul style="color: #ef4444; font-size: 0.875rem; list-style: none; margin-top: 0.5rem;">
-                    <li>• Course enrollments</li>
-                    <li>• Progress records</li>
-                    <li>• Assessment results</li>
-                    <li>• Course materials</li>
-                </ul>
-            </div>
-
-            <div style="display: flex; gap: 1rem; justify-content: center;">
-                <form method="post" style="flex: 1;">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger" style="flex: 1;" href="{% url 'courses:list' %}">Yes, Delete Course</button>
-                </form>
-                <a href="{% url 'students:list' %}" class="btn btn-primary">Cancel</a>
-            </div>
+    <div class="card" style="max-width: 500px; margin: 4rem auto; text-align: center;">
+        <div style="width: 64px; height: 64px; background: #fee2e2; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+            <span style="font-size: 2rem;">⚠️</span>
         </div>
 
+        <h2 style="color: var(--danger); margin-bottom: 1rem;">Delete Student</h2>
+        <p style="color: var(--text-light); margin-bottom: 2rem;">
+            Are you sure you want to delete the student "{{ student.first_name }} {{ student.last_name }}"? This action cannot be undone.
+        </p>
+
+        <div class="card" style="background: #fee2e2; border: 1px solid #fecaca; margin-bottom: 2rem;">
+            <h4 style="color: var(--danger); margin-bottom: 0.5rem;">Warning</h4>
+            <p style="color: #ef4444; font-size: 0.875rem;">
+                Deleting this student will remove all associated data, including:
+            </p>
+            <ul style="color: #ef4444; font-size: 0.875rem; list-style: none; margin-top: 0.5rem;">
+                <li>• Enrolled courses</li>
+                <li>• Progress records</li>
+                <li>• Assessment results</li>
+                <li>• Other related data</li>
+            </ul>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <form method="post" style="flex: 1;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger" style="flex: 1;">Yes, Delete Student</button>
+            </form>
+            <a href="{% url 'students:list' %}" class="btn btn-primary">Cancel</a>
+        </div>
+    </div>
 {% endblock %}
