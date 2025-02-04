@@ -5,14 +5,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EduLMS - Learning Management System</title>
+    <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
-    {# NAVBAR #}
-    {% include 'includes/nav.html' %}
+
+    <header class="header">
+        {# NAVBAR #}
+        {% include 'includes/nav.html' %}
+    </header>
 
     {# MAIN CONTENT #}
     {% block content %}{% endblock %}

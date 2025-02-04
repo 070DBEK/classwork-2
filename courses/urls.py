@@ -9,9 +9,9 @@ urlpatterns = [
     path('list/', views.course_list, name='list'),
     path('add/', views.add_course, name='add'),
     path(
-        'course/<int:year>/<int:month>/<int:day>/<slug:slug>/',
+        "courses/course/<int:year>/<int:month>/<int:day>/<slug:slug>/",
         views.course_detail,
-        name='detail'
+        name="detail",
     ),
     path('delete/<int:pk>/', views.course_delete, name='delete'),
 ]

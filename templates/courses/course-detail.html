@@ -4,22 +4,101 @@
 
 {% block content %}
 <div class="card">
-    <div style="margin-bottom: 2rem;">
-        <h1 style="font-size: 2rem; color: var(--primary); margin-bottom: 0.5rem;">Delete Course</h1>
-        <p style="color: var(--text-light);">
-            Are you sure you want to delete the course "{{ course.name }}"?
+    <div class="badge badge-success">Active Course</div>
+    <h2 style="margin: 1rem 0; font-size: 2rem; color: var(--primary);">{{ course.name }}</h2>
+
+    <div class="card-grid">
+        <div class="card">
+            <h3 style="color: var(--text-light)">Course Details</h3>
+            <div class="form-group">
+                <label>Duration</label>
+                <p style="color: var(--primary); font-size: 1.25rem; font-weight: 600;">{{ course.duration }} months</p>
+            </div>
+            <div class="form-group">
+                <label>Price</label>
+                <p style="color: var(--primary); font-size: 1.5rem; font-weight: 700;">${{ course.price }}</p>
+            </div>
+        </div>
+
+        <div class="card">
+            <h3 style="color: var(--text-light)">Course Statistics</h3>
+            <div class="form-group">
+                <label>Enrolled Students</label>
+                <p style="color: var(--primary); font-size: 2rem; font-weight: 700;">{{ course.number }}</p>
+            </div>
+            <div class="form-group">
+                <label>Average Progress</label>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill" style="width: 65%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Description</label>
+        <p style="line-height: 1.8; color: var(--text-light)">
+            {{ course.description }}
         </p>
     </div>
 
-    <form method="POST">
-        {% csrf_token %}
-        <p style="color: var(--text);">
-            This action cannot be undone. If you proceed, the course will be permanently removed.
-        </p>
-        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-            <button type="submit" class="btn btn-danger"><a href="{% url 'courses:delete' course.id %}" >Confirm Delete</a></button>
-            <a href="{% url 'courses:list' %}" class="btn btn-secondary">Cancel</a>
+    <div class="form-group mt-2">
+        <h3 style="color: var(--text-light); margin-bottom: 1rem;">Enrolled Students</h3>
+        <div class="card" style="overflow: auto;">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>Email</th>
+                        <th>Enrollment Date</th>
+                        <th>Progress</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in page_obj %}
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                <div style="width: 32px; height: 32px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                                    JD
+                                </div>
+                                {{ student.first_name }} {{ student.last_name }}
+                            </div>
+                        </td>
+                        <td>{{ student.email }}</td>
+                        <td>{{ student.created_at }}</td>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                5%
+                                <div class="progress-bar" style="flex: 1;">
+                                    <div class="progress-bar-fill" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-    </form>
+
+        <!-- Pagination Controls -->
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; first</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">next</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
 </div>
 {% endblock %}
